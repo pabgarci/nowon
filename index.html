@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+  <title>Prueba 1 - Bootstrap</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-signin-client_id" content="897817624771-ck0lm7r96noop3piiokv60j4rdj6c6vr.apps.googleusercontent.com">
+
+<!-- DEPENDENCIAS -->
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap-flaty.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/css.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+<!-- SUMMERNOTE -->
+  <link href="css/summernote.css" rel="stylesheet"/></script>
+  <script src="js/summernote/summernote.min.js"></script>
+  <script src="js/summernote/init-summernote.js"></script>
+<!-- GOOGLE CALENDAR -->
+  <script src="js/google.js"></script>
+  <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
+<!-- JQUERY -->
+<script src="js/jQuery.js"></script>
+  
+</head>
+    
+<body>
+
+<!-- TOOLBAR -->
+    <div id="content-toolbar">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Google Calendar</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="inactive" id="button-list"><a href="#">Upcoming events <span class="badge" id="numEvents"></span></a></li>
+        <li class="inactive" id="button-list-past"><a href="#">Past events</a></li>
+        <li class="inactive" id="button-add" ><a href="#">Add event</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage events<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Add event</a></li>
+            <li><a href="#">List events</a></li>
+            <li><a href="#">¿?</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in" onClick="handleAuthClick()"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+
+<!-- END TOOLBAR -->
+
+<!-- INDEX -->
+
+<div id="content-index">
+
+<h1>Welcome!<h5>Manage all your events.</h5></h1>
+
+</div>
+
+<!-- END INDEX -->
+
+<!-- ADD -->
+
+<div id="content-add">
+  <div class="container-fluid" id="maincontainer">
+    <div class="row">
+      <div class="col-sm-7">
+        <div class="container-fluid" id="editorContainer">
+          <div class="jumbotron">
+            <div class="container">Editor
+              <div id="summernote"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <div class="container-fluid" id="previewContainer">
+          <div class="jumbotron">Preview
+            <div class="panel panel-default">
+              <div class="panel-body" id="preview"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-9"></div>
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-default">Cancel</button>    
+        <button type="button" class="btn btn-primary" onClick="refreshPreview()">Add event</button>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+  </div>
+</div>
+<!-- END ADD -->
+
+<!-- LIST -->
+<div id="content-list">
+  <div class="col-sm-1">
+  </div>
+  <nav class="navbar-default navbar-default">
+    <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="#">Edit</a></li>
+          <li><a href="#">Delete</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Move to calendar <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Order by <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="navbar-form navbar-right" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="">
+          </div>
+          <button type="submit" class="btn btn-default">Search</button>
+        </form>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <div class="jumbotron">
+    <table class="table" id="content-list">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Place</th>
+        </tr>
+      </thead>
+      <tbody id="listEvents"></tbody>
+<!-- <div class="row"><div align="right" class="col-sm-1">Select</div><div class="col-sm-7">Description</div><div class="col-sm-1">Date</div><div class="col-sm-1">Time</div><div class="col-sm-2">Place</div></div>
+<ul class="list-group" id="listEvents"></ul>-->
+
+    </table>
+  </div>
+</div>
+
+<!-- END LIST -->
+
+<!-- LIST PAST-->
+
+<div id="content-list-past">
+  <input type="checkbox" value="">
+</div>
+
+<!-- END LIST PAST -->
+  
+        
+
+ 
+ 
+</body>
+    
+</html>

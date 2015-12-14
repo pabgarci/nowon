@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+      <title>Prueba 1 - Bootstrap</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="897817624771-ck0lm7r96noop3piiokv60j4rdj6c6vr.apps.googleusercontent.com">
+<!-- DEPENDENCIAS -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  
+</head>
+    
+<body>
+       
+ 
+  <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log("Name: " + profile.getName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      };
+      onSignIn();
+    </script>
+</body>
+    
+</html>
